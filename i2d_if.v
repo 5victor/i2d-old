@@ -14,7 +14,7 @@ module i2d_if(
 	adr_o, dat_i, ack_i, rty_i, err_i,
 
 	//
-	if_en, set_pc, new_pc, if_ins, if_pc, if_busy
+	if_en, set_pc, new_pc, if_ins, if_pc, if_busy, if_err
 );
 
 input	clk;
@@ -36,10 +36,10 @@ output	if_busy;
 reg	[31:0]	adr_o;
 reg	[31:0]	if_pc;
 
-reg	[31:0]	npc; //next pc
-reg	pc;
+reg	[31:0]	pc;
 
-assign if_busy = ~ack_i;
+assign if_busy = rty_i;
+assign if_err = err_i | (~rty_i & ~err_i & ~ack_i);
 assign if_ins = if_en ? dat_i : {`I2D_INS_NOP, 26'b0};
 
 always @(posedge clk)
@@ -51,12 +51,14 @@ begin
 		if (set_pc)
 			pc <= new_pc;
 		else
-			pc <= npc;
-		
-		npc <= pc + 4;
-		adr_o <= pc;
-		if_pc <= pc;
+			pc <= pc + 4;
 	end
+end
+
+always @(pc)
+begin
+	adr_o <= pc;
+	if_pc <= pc;
 end
 
 endmodule

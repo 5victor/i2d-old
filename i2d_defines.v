@@ -8,4 +8,4 @@
 
 // instruction opcode
 
-`define I2D_INS_NOP 6'h1
+`define I2D_INS_NOP 6'b011111
