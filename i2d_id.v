@@ -49,6 +49,7 @@ reg		sel_imm_r;	//instruction have a register operand
 reg		sel_imm_nr;	//instruction does not have a register operand
 reg		sel_rf_ra;
 reg		sel_rf_rb;
+
 always @(posedge clk)
 begin
 	if (rst == 0)
@@ -106,12 +107,8 @@ end
 
 //decode rf
 
-assign 
 
-//
-always @(id_ins)
-begin
 	
-end
+
 endmodule
 

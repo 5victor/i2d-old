@@ -43,7 +43,6 @@
 `define I2D_INS_LD	6'b010100
 `define I2D_INS_ST	6'b010101
 
-//branch instruction
 //branch instruction may have 2 opcodes(imm, reg), while the condition in ins[26:0]
 `define I2D_INS_B	6'b010110
 `define I2D_INS_BR	6'b010111
