@@ -322,8 +322,7 @@ begin
 			`I2D_INS_OR,
 			`I2D_INS_ORI:
 				alu_op <= `I2D_ALUOP_OR;
-			`I2D_INS_NOT,
-			`I2D_INS_NOTI:
+			`I2D_INS_NOT:
 				alu_op <= `I2D_ALUOP_NOT;
 			`I2D_INS_RSL,
 			`I2D_INS_RSLI:
@@ -332,7 +331,7 @@ begin
 			`I2D_INS_RSRI:
 				alu_op <= `I2D_ALUOP_RSR;
 			`I2D_INS_ASL,
-			`I2D_INS_ALLI:
+			`I2D_INS_ASLI:
 				alu_op <= `I2D_ALUOP_ASL;
 			`I2D_INS_ASR,
 			`I2D_INS_ASRI:
