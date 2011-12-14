@@ -47,7 +47,7 @@ always @(posedge clk)
 begin
 	if (~rst)
 		pc <= 0;
-	else if (if_dis)
+	else if (~if_dis && ~rty_i)
 	begin
 		if (set_pc)
 			pc <= new_pc;
