@@ -1,3 +1,12 @@
 *.swp
-*.v~
+*~
 *.bak
+
+# ignore quartus project file
+
+db/
+*.qpf
+*.qsf
+*.rpt
+*.summary
+
