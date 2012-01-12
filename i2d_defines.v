@@ -116,3 +116,6 @@
 `define I2D_ALUOP_ASR		13
 `define I2D_ALUOP_ERR		14
 
+
+//mau op
+`define I2D_MAUOP_
