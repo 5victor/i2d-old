@@ -6,7 +6,7 @@
  * i2d xxx module
  */
 
-`include "i2d_defines.v"
+`include "i2d_core_defines.v"
 
 module i2d_oprandmux(
 		rst, clk,

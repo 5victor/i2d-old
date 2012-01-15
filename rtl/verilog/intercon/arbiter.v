@@ -11,7 +11,8 @@
 module arbiter(
 	request, last, grant, cyc_o
 );
-parameter WIDTH = `WBM_NUM;
+localparam WIDTH = `INTERCON_MASTER_NUM;
+
 input	[WIDTH-1:0]	request;
 input	[WIDTH-1:0]	last; //last grant
 output	[WIDTH-1:0]	grant;
@@ -22,7 +23,7 @@ wire	[WIDTH-1:0]	masked_req;
 wire	[2*WIDTH-1:0]	double_req;
 wire	[2*WIDTH-1:0]	pre_grant;
 
-assign	masked_req = last & ~current;
+assign	masked_req = request & ~last;
 assign	double_req = {masked_req,masked_req};
 assign	pre_grant = double_req & ~(double_req-last);
 assign	grant = pre_grant[WIDTH-1:0] | pre_grant[2*WIDTH-1:WIDTH];

@@ -6,7 +6,7 @@
  * i2d mau module
  */
 
-`include "i2d_defines.v"
+`include "i2d_core_defines.v"
 
 module i2d_mau(
 		rst, clk,
@@ -23,3 +23,5 @@ input		clk;
 input		mau_dis;
 input		mau_flush;
 input	[1:0]	mau_op;
+
+endmodule

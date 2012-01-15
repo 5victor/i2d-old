@@ -1,10 +1,8 @@
-/* filename
+/* i2d_soc_defines.v
  *
  * Copyright: Victor Wen, vic7tor@gmail.com
  * This code publish under GNU GPL License
  *
- * i2d soc intercon arbiter module
+ * i2d soc defines
  */
-
-`include "i2d_soc_defines.v"
-
+`define INTERCON_MASTER_NUM	2
