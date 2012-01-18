@@ -9,25 +9,49 @@
 `include "i2d_soc_defines.v"
 
 module arbiter(
-	request, last, grant, cyc_o
+	rst, clk, request, grant
 );
 localparam WIDTH = `INTERCON_MASTER_NUM;
 
+input			rst;
+input			clk;
 input	[WIDTH-1:0]	request;
-input	[WIDTH-1:0]	last; //last grant
 output	[WIDTH-1:0]	grant;
-output			cyc_o;
 
 //internal wires
-wire	[WIDTH-1:0]	masked_req;
+reg	[WIDTH-1:0]	masked_req;
 wire	[2*WIDTH-1:0]	double_req;
 wire	[2*WIDTH-1:0]	pre_grant;
+reg			last;
+reg			base;
 
-assign	masked_req = request & ~last;
+always @(posedge clk)
+begin
+	if (rst == 0)
+		last = 0;
+	else
+	begin
+		if (request & grant == 0)
+			last = grant;
+	end
+	
+end
+
+always @*
+begin
+if (last == 0) begin
+	masked_req = request;
+	base = 1;
+end
+else begin
+	masked_req = request & ~last;
+	base = last;
+end
+end
+
 assign	double_req = {masked_req,masked_req};
-assign	pre_grant = double_req & ~(double_req-last);
+assign	pre_grant = double_req & ~(double_req-base);
 assign	grant = pre_grant[WIDTH-1:0] | pre_grant[2*WIDTH-1:WIDTH];
-assign	cyc_o = |grant;
 
 endmodule
 

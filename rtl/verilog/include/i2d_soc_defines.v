@@ -6,3 +6,4 @@
  * i2d soc defines
  */
 `define INTERCON_MASTER_NUM	2
+`define WB_BUS_WIDTH		32

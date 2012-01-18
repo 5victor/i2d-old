@@ -1,8 +1,8 @@
-/* i2d_defines.v
+/* i2d_core_defines.v
  *
  * Copyright: Victor Wen, vic7tor@gmail.com
  *
- * i2d defines
+ * i2d core defines
  */
 
 
