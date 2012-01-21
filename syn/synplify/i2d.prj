@@ -1,7 +1,7 @@
 #-- Synopsys, Inc.
 #-- Version 9.6.2
 #-- Project file F:\i2d-dev\i2d\syn\synplify\i2d.prj
-#-- Written on Tue Jan 17 17:04:22 2012
+#-- Written on Thu Jan 19 17:03:30 2012
 
 
 #add_file options
@@ -14,6 +14,9 @@ add_file -verilog "../../rtl/verilog/intercon/arbiter.v"
 add_file -verilog "../../rtl/verilog/intercon/intercon.v"
 add_file -verilog "../../rtl/verilog/include/i2d_core_defines.v"
 add_file -verilog "../../rtl/verilog/include/i2d_soc_defines.v"
+add_file -verilog "../../rtl/verilog/sdram_ctrl/sdram_ctrl.v"
+add_file -verilog "../../rtl/verilog/sdram_ctrl/sdram_ctrl_ramif.v"
+add_file -verilog "../../rtl/verilog/sdram_ctrl/sdram_ctrl_regs.v"
 
 
 #implementation: "rev_1"
@@ -90,4 +93,74 @@ set_option -job par_1 -add par
 
 #design plan options
 set_option -nfilter_user_path ""
-impl -active "rev_1"
+
+
+#implementation: "rev_1_identify"
+impl -add rev_1_identify -type identify
+
+#device options
+set_option -technology CYCLONEII
+set_option -part EP2C5
+set_option -package QC208
+set_option -speed_grade -6
+set_option -part_companion ""
+
+#compilation/mapping options
+set_option -default_enum_encoding default
+set_option -resource_sharing 1
+set_option -use_fsm_explorer 0
+set_option -top_module "intercon"
+
+#map options
+set_option -frequency auto
+set_option -vendor_xcompatible_mode 0
+set_option -vendor_xcompatible_mode 0
+set_option -run_prop_extract 1
+set_option -fanout_limit 30
+set_option -disable_io_insertion 0
+set_option -verification_mode 0
+set_option -pipe 1
+set_option -update_models_cp 0
+set_option -retiming 0
+set_option -no_sequential_opt 0
+set_option -fixgatedclocks 3
+set_option -fixgeneratedclocks 3
+set_option -create_mac_hier 1
+set_option -hier_report 1
+set_option -island_num_paths 10
+set_option -island_global_range 0.5
+set_option -island_group_range 0.5
+set_option -quartus_version ""
+set_option -syn_altera_model on
+
+
+#sequential_optimizations options
+set_option -symbolic_fsm_compiler 1
+
+#netlist optimizer options
+set_option -enable_nfilter 0
+set_option -feedthrough 0
+set_option -constant_prop 0
+set_option -level_hierarchy 0
+
+#simulation options
+set_option -write_verilog 0
+set_option -write_vhdl 0
+
+#VIF options
+set_option -write_vif 1
+
+#automatic place and route (vendor) options
+set_option -write_apr_constraint 1
+
+#set result format/file last
+project -result_file "./rev_1_identify/i2d.vqm"
+
+#
+#implementation attributes
+
+set_option -vlog_std v2001
+set_option -dup 0
+set_option -project_relative_includes 1
+set_option -include_path ../../rtl/verilog/include/
+impl -active "rev_1_identify"

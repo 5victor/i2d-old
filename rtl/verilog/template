@@ -6,5 +6,5 @@
  * i2d xxx module
  */
 
-`include "i2d_defines.v"
+`include "i2d_xxx_defines.v"
 

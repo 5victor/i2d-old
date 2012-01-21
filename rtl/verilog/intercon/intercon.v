@@ -22,9 +22,6 @@ module intercon(
 	wbs0_adr_i, wbs0_dat_i, wbs0_sel_i, wbs0_we_i, wbs0_cyc_i, wbs0_stb_i,
 	wbs0_dat_o, wbs0_ack_o, wbs0_err_o, wbs0_rty_o
 );
-localparam	maxbit = `WB_BUS_WIDTH - 1;
-localparam	selbit = `WB_BUS_WIDTH / 8;
-localparam	master_num = `INTERCON_MASTER_NUM;
 
 //slave address
 parameter	slave0_addr = 8'b00000000;
@@ -32,35 +29,35 @@ parameter	slave0_addr = 8'b00000000;
 input clk;
 input rst;
 //master 0
-input	[maxbit:0]	wbm0_adr_o;
-input	[maxbit:0]	wbm0_dat_o;
-input	[selbit:0]	wbm0_sel_o;
+input	[`WB_ADR_WIDTH-1:0]	wbm0_adr_o;
+input	[`WB_DATA_WIDTH-1:0]	wbm0_dat_o;
+input	[`WB_SEL_WIDTH-1:0]	wbm0_sel_o;
 input			wbm0_we_o;
 input			wbm0_cyc_o;
 input			wbm0_stb_o;
-output	[maxbit:0]	wbm0_dat_i;
+output	[`WB_DATA_WIDTH-1:0]	wbm0_dat_i;
 output			wbm0_ack_i;
 output			wbm0_err_i;
 output			wbm0_rty_i;
 //master 1
-input	[maxbit:0]	wbm1_adr_o;
-input	[maxbit:0]	wbm1_dat_o;
-input	[selbit:0]	wbm1_sel_o;
+input	[`WB_ADR_WIDTH-1:0]	wbm1_adr_o;
+input	[`WB_DATA_WIDTH-1:0]	wbm1_dat_o;
+input	[`WB_SEL_WIDTH-1:0]	wbm1_sel_o;
 input			wbm1_we_o;
 input			wbm1_cyc_o;
 input			wbm1_stb_o;
-output	[maxbit:0]	wbm1_dat_i;
+output	[`WB_DATA_WIDTH-1:0]	wbm1_dat_i;
 output			wbm1_ack_i;
 output			wbm1_err_i;
 output			wbm1_rty_i;
 //slave 0
-output	[maxbit:0]	wbs0_adr_i;
-output	[maxbit:0]	wbs0_dat_i;
-output	[selbit:0]	wbs0_sel_i;
+output	[`WBS_ADR_WIDTH-1:0]	wbs0_adr_i;
+output	[`WB_DATA_WIDTH-1:0]	wbs0_dat_i;
+output	[`WB_SEL_WIDTH-1:0]	wbs0_sel_i;
 output			wbs0_we_i;
 output			wbs0_cyc_i;
 output			wbs0_stb_i;
-input	[maxbit:0]	wbs0_dat_o;
+input	[`WB_DATA_WIDTH-1:0]	wbs0_dat_o;
 input			wbs0_ack_o;
 input			wbs0_err_o;
 input			wbs0_rty_o;
@@ -69,13 +66,13 @@ wire	[`INTERCON_MASTER_NUM-1:0]	request;
 wire	[`INTERCON_MASTER_NUM-1:0]	grant;
 integer					i;
 
-wire	[maxbit:0]	wbm_adr_o[`INTERCON_MASTER_NUM];
-wire	[maxbit:0]	wbm_dat_o[`INTERCON_MASTER_NUM];
-wire	[selbit:0]	wbm_sel_o[`INTERCON_MASTER_NUM];
+wire	[`WB_ADR_WIDTH-1:0]	wbm_adr_o[`INTERCON_MASTER_NUM];
+wire	[`WB_DATA_WIDTH-1:0]	wbm_dat_o[`INTERCON_MASTER_NUM];
+wire	[`WB_SEL_WIDTH-1:0]	wbm_sel_o[`INTERCON_MASTER_NUM];
 wire			wbm_we_o[`INTERCON_MASTER_NUM];
 wire			wbm_cyc_o[`INTERCON_MASTER_NUM];
 wire			wbm_stb_o[`INTERCON_MASTER_NUM];
-reg	[maxbit:0]	wbm_dat_i[`INTERCON_MASTER_NUM];
+reg	[`WB_DATA_WIDTH-1:0]	wbm_dat_i[`INTERCON_MASTER_NUM];
 reg			wbm_ack_i[`INTERCON_MASTER_NUM];
 reg			wbm_err_i[`INTERCON_MASTER_NUM];
 reg			wbm_rty_i[`INTERCON_MASTER_NUM];
@@ -102,13 +99,13 @@ assign wbm1_ack_i = wbm_ack_i[1];
 assign wbm1_err_i = wbm_err_i[1];
 assign wbm1_rty_i = wbm_rty_i[1];
 
-reg	[maxbit:0]	adr_o;
-reg	[maxbit:0]	dat_o;
-reg	[selbit:0]	sel_o;
+reg	[`WB_ADR_WIDTH-1:0]	adr_o;
+reg	[`WB_DATA_WIDTH-1:0]	dat_o;
+reg	[`WB_SEL_WIDTH-1:0]	sel_o;
 reg			we_o;
 reg			cyc_o;
 reg			stb_o;
-reg	[maxbit:0]	dat_i;
+reg	[`WB_DATA_WIDTH-1:0]	dat_i;
 reg			ack_i;
 reg			err_i;
 reg			rty_i;
@@ -140,7 +137,7 @@ end
 
 
 wire [0:0] slave_sel;
-assign slave_sel[0] = adr_o[maxbit:maxbit-8] == slave0_addr; 
+assign slave_sel[0] = adr_o[`WB_ADR_WIDTH-1:`WB_ADR_WIDTH-1-8] == slave0_addr; 
 
 assign wbs0_adr_i = adr_o;
 assign wbs0_dat_i = dat_o;
