@@ -76,6 +76,9 @@ wire	[2:0]	t_rp;
 wire	[2:0]	t_ref;
 wire	refreshing;
 
+assign clk_sdr = clk;
+assign cke_sdr = ctrl_en;
+
 sdram_ctrl_wbif wbif(clk, rst, adr_i, sel_i, we_i, cyc_i, stb_i, dat_o, ack_o,
 	err_o, rty_o, acc, we, ba, row_addr, col_addr, data, mask, finish,
 	busy, ref, mem_size);

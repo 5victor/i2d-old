@@ -7,115 +7,127 @@
 
 
 // instruction opcode
-
+`define CORE_OPCODE_WIDTH	6
 //ALU instruction
-`define I2D_INS_ADD	6'b000001
-`define I2D_INS_ADDI	6'b000010
-`define I2D_INS_ADDC	6'b000011
-`define I2D_INS_ADDCI	6'b000100
-`define I2D_INS_SUB	6'b000101
-`define I2D_INS_SUBI	6'b000110
-`define I2D_INS_SUBC	6'b000111
-`define I2D_INS_SUBCI	6'b001000
-`define I2D_INS_MUL	6'b001001
-`define I2D_INS_MULI	6'b101101
-`define	I2D_INS_MULU	6'b001010
-`define I2D_INS_MULUI	6'b101110
-`define I2D_INS_DIV	6'b001011
-`define I2D_INS_DIVI	6'b101111
-`define I2D_INS_DIVU	6'b001100
-`define I2D_INS_DIVUI	6'b110000
-`define I2D_INS_AND	6'b001101
-`define I2D_INS_ANDI	6'b110001
-`define I2D_INS_OR	6'b001110
-`define I2D_INS_ORI	6'b110010
-`define I2D_INS_NOT	6'b001111
-`define I2D_INS_RSL	6'b010000
-`define I2D_INS_RSLI	6'b110011
-`define I2D_INS_RSR	6'b010001
-`define I2D_INS_RSRI	6'b110100
-`define	I2D_INS_ASL	6'b010010
-`define I2D_INS_ASLI	6'b110100
-`define I2D_INS_ASR	6'b010011
-`define I2D_INS_ASRI	6'b110101
+`define CORE_OPCODE_ADD		6'd1
+`define CORE_OPCODE_ADDI	6'd2
+`define CORE_OPCODE_ADDC	6'd3
+`define CORE_OPCODE_ADDCI	6'd4
+`define CORE_OPCODE_SUB		6'd5
+`define CORE_OPCODE_SUBI	6'd6
+`define CORE_OPCODE_SUBC	6'd7
+`define CORE_OPCODE_SUBCI	6'd8
+`define CORE_OPCODE_MUL		6'd9
+`define CORE_OPCODE_MULI	6'd10
+`define	CORE_OPCODE_MULU	6'd11
+`define CORE_OPCODE_MULUI	6'd12
+`define CORE_OPCODE_DIV		6'd13
+`define CORE_OPCODE_DIVI	6'd14
+`define CORE_OPCODE_DIVU	6'd15
+`define CORE_OPCODE_DIVUI	6'd16
+`define CORE_OPCODE_AND		6'd17
+`define CORE_OPCODE_ANDI	6'd18
+`define CORE_OPCODE_OR		6'd19
+`define CORE_OPCODE_ORI		6'd20
+`define CORE_OPCODE_NOT		6'd21
+`define CORE_OPCODE_RSL		6'd22
+`define CORE_OPCODE_RSLI	6'd23
+`define CORE_OPCODE_RSR		6'd24
+`define CORE_OPCODE_RSRI	6'd25
+`define	CORE_OPCODE_ASL		6'd26
+`define CORE_OPCODE_ASLI	6'd27
+`define CORE_OPCODE_ASR		6'd28
+`define CORE_OPCODE_ASRI	6'd29
 
 //MEM instruction
-`define I2D_INS_LD	6'b010100
-`define I2D_INS_ST	6'b010101
+`define CORE_OPCODE_LD	6'd30
+`define CORE_OPCODE_ST	6'd31
 
 //branch instruction may have 2 opcodes(imm, reg), while the condition in ins[26:0]
-`define I2D_INS_B	6'b010110
-`define I2D_INS_BI	6'b010111
+`define CORE_OPCODE_B	6'd31
+`define CORE_OPCODE_BI	6'd32
 
 /*
-`define I2D_INS_BE	6'b011000
-`define I2D_INS_BER	6'b011001
-`define I2D_INS_BNE	6'b011010
-`define I2D_INS_BNER	6'b011011
-`define I2D_INS_BG	6'b011100
-`define I2D_INS_BGR	6'b011101
-`define I2D_INS_BL	6'b011110
-`define I2D_INS_BLR	6'b011111
-`define I2D_INS_BA	6'b100000
-`define I2D_INS_BAR	6'b100001
-`define I2D_INS_BB	6'b100010
-`define I2D_INS_BBR	6'b100011
+`define CORE_OPCODE_BE	6'd011000
+`define CORE_OPCODE_BER	6'd011001
+`define CORE_OPCODE_BNE	6'd011010
+`define CORE_OPCODE_BNER	6'd011011
+`define CORE_OPCODE_BG	6'd011100
+`define CORE_OPCODE_BGR	6'd011101
+`define CORE_OPCODE_BL	6'd011110
+`define CORE_OPCODE_BLR	6'd011111
+`define CORE_OPCODE_BA	6'd100000
+`define CORE_OPCODE_BAR	6'd100001
+`define CORE_OPCODE_BB	6'd100010
+`define CORE_OPCODE_BBR	6'd100011
 */
 
 //other instruction
-`define I2D_INS_NOP	6'b100100
-`define I2D_INS_MOV	6'b100101
-`define I2D_INS_MOVI	6'b100110
-`define I2D_INS_SWI	6'b100111
-`define I2D_INS_CALL	6'b101000
-`define	I2D_INS_CALLI	6'b110110
-`define I2D_INS_RET	6'b101001
-`define I2D_INS_RFE	6'b101010
-`define I2D_INS_MSR	6'b101011
-`define I2D_INS_MRS	6'b101100
+`define CORE_OPCODE_NOP		6'd33
+`define CORE_OPCODE_MOV		6'd34
+`define CORE_OPCODE_MOVI	6'd35
+`define CORE_OPCODE_SWI		6'd36
+`define CORE_OPCODE_CALL	6'd37
+`define	CORE_OPCODE_CALLI	6'd38
+`define CORE_OPCODE_RET		6'd39
+`define CORE_OPCODE_RFE		6'd40
+`define CORE_OPCODE_MSR		6'd41
+`define CORE_OPCODE_MRS		6'd42
 
 //i2d regfile
-`define I2D_GPR_WIDTH	4
+`define CORE_GPR_WIDTH	4
 
-`define I2D_RF_R0	4'b0000
+`define CORE_RF_R0	4'b0000
 
 //mode depend gpr
-`define I2D_RF_LR	4'b1101
-`define I2D_RF_SP	4'b1110
-`define I2D_RF_PC	4'b1111
+`define CORE_RF_LR	4'b1101
+`define CORE_RF_SP	4'b1110
+`define CORE_RF_PC	4'b1111
 
 //mode depend spr
-`define I2D_RF_EPC	5'b10000
-`define I2D_RF_ESR	5'b10001
+`define CORE_RF_EPC	5'b10000
+`define CORE_RF_ESR	5'b10001
 
 //oprand mux
-`define I2D_OPMUX_A_NONE	0
-`define I2D_OPMUX_A_RA		1
-`define I2D_OPMUX_A_ID_PC	2
-`define I2D_OPMUX_B_NONE	0
-`define I2D_OPMUX_B_RB		1
-`define I2D_OPMUX_B_ID_PC	2
-`define I2D_OPMUX_B_IMM		3
+`define CORE_OPMUX_A_NONE	0
+`define CORE_OPMUX_A_RA		1
+`define CORE_OPMUX_A_ID_PC	2
+`define CORE_OPMUX_B_NONE	0
+`define CORE_OPMUX_B_RB		1
+`define CORE_OPMUX_B_ID_PC	2
+`define CORE_OPMUX_B_IMM		3
 
 //alu op
-`define I2D_ALUOP_NONE		0
-`define I2D_ALUOP_ADD		1
-`define I2D_ALUOP_ADDC		2
-`define I2D_ALUOP_SUB		3
-`define I2D_ALUOP_SUBC		4
-`define I2D_ALUOP_MUL		5
-`define I2D_ALUOP_MULU		6
-`define I2D_ALUOP_DIV		7
-`define I2D_ALUOP_DIVU		8
-`define I2D_ALUOP_AND		9
-`define I2D_ALUOP_OR		8
-`define I2D_ALUOP_NOT		9
-`define I2D_ALUOP_RSL		10
-`define I2D_ALUOP_RSR		11
-`define I2D_ALUOP_ASL		12
-`define I2D_ALUOP_ASR		13
-`define I2D_ALUOP_ERR		14
+`define CORE_ALUOP_NONE		0
+`define CORE_ALUOP_ADD		1
+`define CORE_ALUOP_ADDC		2
+`define CORE_ALUOP_SUB		3
+`define CORE_ALUOP_SUBC		4
+`define CORE_ALUOP_MUL		5
+`define CORE_ALUOP_MULU		6
+`define CORE_ALUOP_DIV		7
+`define CORE_ALUOP_DIVU		8
+`define CORE_ALUOP_AND		9
+`define CORE_ALUOP_OR		8
+`define CORE_ALUOP_NOT		9
+`define CORE_ALUOP_RSL		10
+`define CORE_ALUOP_RSR		11
+`define CORE_ALUOP_ASL		12
+`define CORE_ALUOP_ASR		13
+`define CORE_ALUOP_ERR		14
 
+//status register bit
+`define CORE_SR_CF			0
+`define CORE_SR_OF			1
+`define CORE_SR_ZF			2
+
+`define CORE_SR_MODE_M		3	//MSB
+`define CORE_SR_MODE_L		5	//LSB
+
+//branch instrution
+`define CORE_BRANCH_B		1	//always
+`define CORE_BRANCH_BNE		2
+`define CORE_BRANCH_BE		3
 
 //mau op
-`define I2D_MAUOP_
+`define CORE_MAUOP_
