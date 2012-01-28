@@ -1,4 +1,4 @@
-/* filename
+/* core_mau.v
  *
  * Copyright: Victor Wen, vic7tor@gmail.com
  * This code publish under GNU GPL License
@@ -8,7 +8,7 @@
 
 `include "i2d_core_defines.v"
 
-module i2d_mau(
+module core_mau(
 		rst, clk,
 		//internal interface
 		mau_dis, mau_flush, mau_op, mau_addr,

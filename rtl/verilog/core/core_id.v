@@ -1,4 +1,4 @@
-/* i2d_id.v
+/* core_id.v
  *
  * Copyright: Victor Wen, vic7tor@gmail.com
  *
@@ -7,7 +7,7 @@
 
 `include "i2d_core_defines.v"
 
-module i2d_id(
+module core_id(
 	clk, rst,
 	//input
 	if_ins, if_pc, sr, id_halt, id_flush,

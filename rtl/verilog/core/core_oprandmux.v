@@ -1,4 +1,4 @@
-/* filename
+/* core_oprandmux.v
  *
  * Copyright: Victor Wen, vic7tor@gmail.com
  * This code publish under GNU GPL License
@@ -8,7 +8,7 @@
 
 `include "i2d_core_defines.v"
 
-module i2d_oprandmux(
+module core_oprandmux(
 		rst, clk,
 		//input
 		ra, id_pc, rb, imm,

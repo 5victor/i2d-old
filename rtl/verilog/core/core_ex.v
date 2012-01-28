@@ -1,4 +1,4 @@
-/* filename
+/* core_ex.v
  *
  * Copyright: Victor Wen, vic7tor@gmail.com
  * This code publish under GNU GPL License
@@ -8,7 +8,7 @@
 
 `include "i2d_core_defines.v"
 
-module i2d_ex(
+module core_ex(
 	rst, clk,
 	//input
 	id_ins, id_pc, ex_dis,

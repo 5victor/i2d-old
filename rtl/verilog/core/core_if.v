@@ -1,4 +1,4 @@
-/* i2d_if.v
+/* core_if.v
  *
  * Copyright: Victor Wen, vic7tor@gmail.com
  *
@@ -8,7 +8,7 @@
 `include "i2d_core_defines.v"
 
 
-module i2d_if(
+module core_if(
 	clk, rst,
 	//wishbone bus
 	adr_o, sel_o, we_o, cyc_o, stb_o, dat_i, ack_i, rty_i, err_i,
