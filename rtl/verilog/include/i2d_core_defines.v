@@ -5,6 +5,7 @@
  * i2d core defines
  */
 
+`include i2d_soc_defines.v
 
 // instruction opcode
 `define CORE_OPCODE_WIDTH	6
@@ -40,8 +41,12 @@
 `define CORE_OPCODE_ASRI	6'd29
 
 //MEM instruction
-`define CORE_OPCODE_LD	6'd30
-`define CORE_OPCODE_ST	6'd31
+`define CORE_OPCODE_LD		6'd30
+`define CORE_OPCODE_LDB		6'd42
+`define CORE_OPCODE_LDW		6'd43
+`define CORE_OPCODE_ST		6'd31
+`define CORE_OPCODE_STB		6'd44
+`define CORE_OPCODE_STW		6'd45
 
 //branch instruction may have 2 opcodes(imm, reg), while the condition in ins[26:0]
 `define CORE_OPCODE_B	6'd31
@@ -74,6 +79,9 @@
 `define CORE_OPCODE_MSR		6'd41
 `define CORE_OPCODE_MRS		6'd42
 
+`define CORE_INS_RA_MSB		21//31-6-4
+`define CORE_INS_RB_MSB		17
+
 //i2d regfile
 `define CORE_GPR_WIDTH	4
 
@@ -91,11 +99,13 @@
 //oprand mux
 `define CORE_OPMUX_A_NONE	0
 `define CORE_OPMUX_A_RA		1
-`define CORE_OPMUX_A_ID_PC	2
+`define CORE_OPMUX_A_PC		2
+`define CORE_OPMUX_A_WB		3
 `define CORE_OPMUX_B_NONE	0
 `define CORE_OPMUX_B_RB		1
 `define CORE_OPMUX_B_ID_PC	2
-`define CORE_OPMUX_B_IMM		3
+`define CORE_OPMUX_B_IMM	3
+`define CORE_OPMUX_B_WB		4
 
 //alu op
 `define CORE_ALUOP_NONE		0
@@ -110,8 +120,8 @@
 `define CORE_ALUOP_AND		9
 `define CORE_ALUOP_OR		8
 `define CORE_ALUOP_NOT		9
-`define CORE_ALUOP_RSL		10
-`define CORE_ALUOP_RSR		11
+`define CORE_ALUOP_LSL		10
+`define CORE_ALUOP_LSR		11
 `define CORE_ALUOP_ASL		12
 `define CORE_ALUOP_ASR		13
 `define CORE_ALUOP_ERR		14
@@ -130,4 +140,12 @@
 `define CORE_BRANCH_BE		3
 
 //mau op
-`define CORE_MAUOP_
+`define CORE_MAUOP_NONE		0
+`define CORE_MAUOP_R		1
+`define CORE_MAUOP_W		2
+
+//mau sel
+`define CORE_MAUSEL_NONE	0
+`define CORE_MAUSEL_B		1
+`define CORE_MAUSEL_W		2
+`define CORE_MAUSEL_D		3

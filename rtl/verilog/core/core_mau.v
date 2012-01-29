@@ -11,11 +11,11 @@
 module core_mau(
 		rst, clk,
 		//internal interface
-		mau_dis, mau_flush, mau_op, mau_addr,
-		datain, data_out, busy,
+		mau_halt, mau_flush, mau_op, mau_addr,
+		data_in, data_out, busy,
 		//wishbone interface
-		adr_o, dat_i, dat_o, ack_i, cyc_o, err_i, try_i, sel_o,
-		we_o
+		adr_o, dat_i, dat_o, ack_i, cyc_o, err_i, rty_i, sel_o,
+		we_o, stb_o
 );
 
 input		rst;

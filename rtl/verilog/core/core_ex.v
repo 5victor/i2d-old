@@ -11,11 +11,15 @@
 module core_ex(
 	rst, clk,
 	//input
-	id_ins, id_pc, ex_dis,
+	id_ins, id_pc, ex_halt,
 	//ouput
-	mau_op, sel_mau_addr
+	wb_addr
 );
-
+input		rst;
+input		clk;
+input	[31:0]	id_ins;
+input	[31:0]	id_pc;
+input		ex_halt;
 
 endmodule
 
